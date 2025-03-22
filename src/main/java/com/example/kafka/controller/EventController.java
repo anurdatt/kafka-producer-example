@@ -1,12 +1,10 @@
-package com.example.kafka_producer_example.controller;
+package com.example.kafka.controller;
 
-import com.example.kafka_producer_example.service.KafkaMessagePublisher;
+import com.example.kafka.model.Employee;
+import com.example.kafka.service.KafkaMessagePublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/producer-app")
@@ -25,5 +23,11 @@ public class EventController {
         } catch (Exception ex) {
             return ResponseEntity.status(500).body("Unknown Server error! - " + ex.getMessage());
         }
+    }
+
+    @PostMapping("/publish")
+    public ResponseEntity<?> publishEvent(@RequestBody Employee employee) {
+        publisher.sendEvent(employee);
+        return ResponseEntity.ok("Event sent to the topic");
     }
 }

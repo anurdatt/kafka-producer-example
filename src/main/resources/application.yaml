@@ -1,6 +1,8 @@
-spring:
-  kafka:
-    producer:
-      bootstrap-servers:
-        - localhost:9092
+#spring:
+#  kafka:
+#    producer:
+#      bootstrap-servers:
+#        - localhost:9092
+#
 
+kafka-topic-name: kafka-topic-sample
